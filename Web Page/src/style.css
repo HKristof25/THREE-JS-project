@@ -3,13 +3,22 @@ canvas{
   top: 0;
   left: 0;
 }
-p
+p a
 {
   position: absolute;
   z-index: 100%;
   display: block;
   color: white;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-decoration: none;
+  color: blueviolet;
+}
+
+.jersey-15-regular {
+  font-family: "Jersey 15", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 6dvi;
 }
