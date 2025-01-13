@@ -3,3 +3,13 @@ canvas{
   top: 0;
   left: 0;
 }
+p
+{
+  position: absolute;
+  z-index: 100%;
+  display: block;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
