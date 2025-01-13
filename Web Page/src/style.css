@@ -14,11 +14,19 @@ p a
   transform: translate(-50%, -50%);
   text-decoration: none;
   color: blueviolet;
+  font-size: 6dvi;
+  animation-name: Pulsing;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
 }
-
+@keyframes Pulsing 
+{
+  0%{font-size: 6dvi;}
+  50%{font-size: 6.5dvi;}
+  100%{font-size: 6dvi;}
+}
 .jersey-15-regular {
   font-family: "Jersey 15", serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 6dvi;
 }
