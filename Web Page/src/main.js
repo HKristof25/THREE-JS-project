@@ -20,7 +20,10 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight)
-camera.position.set(1,1,1)
+camera.position.set( 9,9,9);
+camera.rotateX(-0.78)
+camera.rotateY(0.61)
+camera.rotateZ(0.52)
 //camera.position.set( -5.47283435693948,8.719480629687583,12.0075850771697);
 
 renderer.render(scene,camera)
@@ -79,6 +82,7 @@ scene.add(ambientLight)
 
 //Camera Control
 const controls = new OrbitControls(camera,renderer.domElement)
+controls.enabled = false
 
 //Adding background stars
 function addStar(){
@@ -98,7 +102,7 @@ Array(200).fill().forEach(addStar)
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 
-document.addEventListener('mousemove', onPointerMove)
+document.addEventListener('click', onPointerMove)
 let INTERSECTED;
 
 function onPointerMove( event ) {
@@ -108,6 +112,7 @@ function onPointerMove( event ) {
 
 	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  render()
 
 }
 
@@ -119,38 +124,26 @@ function render() {
 	// calculate objects intersecting the picking ray
 	const intersects = raycaster.intersectObjects( scene.children, false );
 
-  if (intersects.length > 0 ){
     if (INTERSECTED != intersects[0].object){
-      if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
 						INTERSECTED = intersects[ 0 ].object;
-            if(INTERSECTED.name == "Cube")
+            console.log(INTERSECTED)
+            if(INTERSECTED.name == "Cube" && INTERSECTED.position.y < 1.5)
             {
               INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
               INTERSECTED.material.emissive.setHex( 0x0080c9 );
-              INTERSECTED.position.y += 1
+              INTERSECTED.position.y += 0.5
             }
     }
-  }else {
-
-    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
-    INTERSECTED = null;
-
-  }
 
 
 
 }
 
 
-
-window.requestAnimationFrame(render);
 //Function called every frame
 function animate(){
-  console.log(camera.position, camera.rotation)
+  //console.log(camera.position, camera.rotation)
   requestAnimationFrame(animate)
-  render()
   renderer.render(scene,camera)
 }
 animate()
