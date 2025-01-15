@@ -76,13 +76,13 @@ light.shadow.camera.far= 500
 const helper = new THREE.CameraHelper( light.shadow.camera );
 //scene.add( helper );
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 2)
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
 
 scene.add(ambientLight)
 
 //Camera Control
 const controls = new OrbitControls(camera,renderer.domElement)
-controls.enabled = false
+controls.enabled = true
 
 //Adding background stars
 function addStar(){
@@ -130,7 +130,9 @@ function render() {
             if(INTERSECTED.name == "Cube" && INTERSECTED.position.y < 1.5)
             {
               INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-              INTERSECTED.material.emissive.setHex( 0x0080c9 );
+              INTERSECTED.material.emissive.setHex( 0x29ffd6 );
+              //0x29ffd6
+              //0xff1100
               INTERSECTED.position.y += 0.5
             }
     }
@@ -142,7 +144,7 @@ function render() {
 
 //Function called every frame
 function animate(){
-  //console.log(camera.position, camera.rotation)
+  console.log(camera.position, camera.rotation)
   requestAnimationFrame(animate)
   renderer.render(scene,camera)
 }
